@@ -1,0 +1,197 @@
+<Window x:Class="PCBoostPro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PC BOOST PRO"
+        Height="760"
+        Width="1180"
+        WindowStartupLocation="CenterScreen"
+        Background="#111827" >
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Background="#1F2937" CornerRadius="12" Padding="20" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="PC BOOST PRO" FontSize="28" FontWeight="Bold" Foreground="#F9FAFB" />
+                    <TextBlock Text="Diagnóstico, manutenção e otimização segura do Windows" FontSize="13" Foreground="#CBD5E1" />
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Content="Atualizar"  
+                        Width="120" Height="40"
+                        Background="#2563EB" Foreground="White" FontWeight="SemiBold"
+                        Click="RefreshButton_Click" />
+            </Grid>
+        </Border>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Dashboard">
+                <Grid Margin="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*" />
+                        <ColumnDefinition Width="1.0*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Border Background="#1F2937" CornerRadius="10" Padding="16" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Resumo do sistema" FontSize="18" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,0,0,12" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Computador" Foreground="#9CA3AF" Margin="0,0,0,6" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SystemSnapshot.ComputerName}" Foreground="#F9FAFB" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Sistema" Foreground="#9CA3AF" Margin="0,0,0,6" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SystemSnapshot.WindowsVersion}" Foreground="#F9FAFB" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Processador" Foreground="#9CA3AF" Margin="0,0,0,6" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SystemSnapshot.ProcessorName}" Foreground="#F9FAFB" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Memória" Foreground="#9CA3AF" Margin="0,0,0,6" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SystemSnapshot.TotalMemoryText}" Foreground="#F9FAFB" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Armazenamento" Foreground="#9CA3AF" Margin="0,0,0,6" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SystemSnapshot.StorageSummary}" Foreground="#F9FAFB" Margin="0,0,0,6" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#1F2937" CornerRadius="10" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="Processos ativos" FontSize="18" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,0,0,12" />
+                                <ListBox ItemsSource="{Binding Processes}" Background="#111827" Foreground="#F9FAFB" Height="280">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                                                <TextBlock Grid.Column="1" Text="{Binding MemoryMbText}" Foreground="#93C5FD" />
+                                                <TextBlock Grid.Column="2" Text="{Binding CpuText}" Foreground="#86EFAC" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                        <Border Background="#1F2937" CornerRadius="10" Padding="16" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Uso em tempo real" FontSize="18" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,0,0,12" />
+                                <TextBlock Text="CPU" Foreground="#9CA3AF" />
+                                <TextBlock Text="{Binding Performance.CpuUsageText}" Foreground="#F9FAFB" FontSize="26" FontWeight="Bold" />
+
+                                <TextBlock Text="Memória" Foreground="#9CA3AF" Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding Performance.MemoryUsageText}" Foreground="#F9FAFB" FontSize="26" FontWeight="Bold" />
+
+                                <TextBlock Text="Disco" Foreground="#9CA3AF" Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding Performance.DiskUsageText}" Foreground="#F9FAFB" FontSize="26" FontWeight="Bold" />
+
+                                <TextBlock Text="Rede" Foreground="#9CA3AF" Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding Performance.NetworkStatus}" Foreground="#F9FAFB" FontSize="18" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#1F2937" CornerRadius="10" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="Status geral" FontSize="18" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,0,0,12" />
+                                <TextBlock Text="{Binding OverallStatus}" Foreground="#F9FAFB" FontSize="22" FontWeight="Bold" />
+                                <TextBlock Text="{Binding OverallStatusMessage}" Foreground="#CBD5E1" TextWrapping="Wrap" Margin="0,8,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Diagnóstico">
+                <Border Background="#111827" CornerRadius="10" Padding="16" Margin="12">
+                    <ListBox ItemsSource="{Binding Diagnostics}" Background="#111827" Foreground="#F9FAFB">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#374151" BorderThickness="1" CornerRadius="8" Padding="10" Margin="0,0,0,8">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#F9FAFB" />
+                                        <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}" Margin="0,4,0,0" />
+                                        <TextBlock Text="{Binding Message}" Foreground="#D1D5DB" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Otimização">
+                <Grid Margin="12">
+                    <ListBox ItemsSource="{Binding OptimizationActions}" Background="#111827" Foreground="#F9FAFB">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#374151" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,0,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#F9FAFB" />
+                                            <TextBlock Text="{Binding Description}" Foreground="#D1D5DB" TextWrapping="Wrap" Margin="0,6,0,0" />
+                                            <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}" Margin="0,4,0,0" />
+                                        </StackPanel>
+                                        <Button Grid.Column="1"
+                                                Content="Executar"
+                                                Width="110" Height="36"
+                                                Click="RunOptimization_Click"
+                                                Background="#16A34A" Foreground="White" FontWeight="SemiBold"
+                                                IsEnabled="{Binding IsAvailable}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Histórico">
+                <Border Background="#111827" CornerRadius="10" Padding="16" Margin="12">
+                    <ListBox ItemsSource="{Binding History}" Background="#111827" Foreground="#F9FAFB">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#374151" BorderThickness="1" CornerRadius="8" Padding="10" Margin="0,0,0,8">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Timestamp}" Foreground="#93C5FD" />
+                                        <TextBlock Text="{Binding Action}" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,4,0,0" />
+                                        <TextBlock Text="{Binding Details}" Foreground="#D1D5DB" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

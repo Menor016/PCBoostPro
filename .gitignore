@@ -1,0 +1,36 @@
+# .gitignore
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+## NuGet
+packages/
+*.nupkg
+
+## Publish output
+publish/
+
+## Local DB
+*.db
+*.db-shm
+*.db-wal
+
+## OS files
+Thumbs.db
+Desktop.ini
+
+## Rider / JetBrains
+.idea/
