@@ -1,9 +1,10 @@
 namespace PCBoostPro.Models;
 
-public class DiagnosticItem
+public class OptimizationAction
 {
-    public string Title { get; set; } = "Sem título";
-    public string Status { get; set; } = "Sem informação";
-    public string Message { get; set; } = "Não disponível";
+    public string Name { get; set; } = "Ação";
+    public string Description { get; set; } = "Sem descrição";
+    public string Status { get; set; } = "Não disponível";
     public string StatusColor { get; set; } = "#FBBF24";
+    public bool IsAvailable { get; set; }
 }

@@ -1,12 +1,12 @@
 namespace PCBoostPro.Models;
 
-public class SystemSnapshot
+public class PerformanceSnapshot
 {
-    public string ComputerName { get; set; } = "Não disponível";
-    public string WindowsVersion { get; set; } = "Não disponível";
-    public string ProcessorName { get; set; } = "Não disponível";
-    public string TotalMemoryText { get; set; } = "Não disponível";
-    public string StorageSummary { get; set; } = "Não disponível";
-    public string Manufacturer { get; set; } = "Não disponível";
-    public string Model { get; set; } = "Não disponível";
+    public double CpuUsagePercent { get; set; }
+    public double MemoryUsagePercent { get; set; }
+    public double DiskUsagePercent { get; set; }
+    public string CpuUsageText => $"{CpuUsagePercent:0.0}%";
+    public string MemoryUsageText => $"{MemoryUsagePercent:0.0}%";
+    public string DiskUsageText => $"{DiskUsagePercent:0.0}%";
+    public string NetworkStatus { get; set; } = "Não disponível";
 }

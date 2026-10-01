@@ -1,12 +1,11 @@
 namespace PCBoostPro.Models;
 
-public class PerformanceSnapshot
+public class ProcessInfo
 {
-    public double CpuUsagePercent { get; set; }
-    public double MemoryUsagePercent { get; set; }
-    public double DiskUsagePercent { get; set; }
-    public string CpuUsageText => $"{CpuUsagePercent:0.0}%";
-    public string MemoryUsageText => $"{MemoryUsagePercent:0.0}%";
-    public string DiskUsageText => $"{DiskUsagePercent:0.0}%";
-    public string NetworkStatus { get; set; } = "Não disponível";
+    public int Id { get; set; }
+    public string Name { get; set; } = "Não disponível";
+    public long MemoryMb { get; set; }
+    public string MemoryMbText => MemoryMb > 0 ? $"{MemoryMb} MB" : "Não disponível";
+    public double CpuPercent { get; set; }
+    public string CpuText => $"{CpuPercent:0.0}%";
 }

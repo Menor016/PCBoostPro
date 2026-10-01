@@ -1,10 +1,8 @@
 namespace PCBoostPro.Models;
 
-public class OptimizationAction
+public class HistoryEntry
 {
-    public string Name { get; set; } = "Ação";
-    public string Description { get; set; } = "Sem descrição";
-    public string Status { get; set; } = "Não disponível";
-    public string StatusColor { get; set; } = "#FBBF24";
-    public bool IsAvailable { get; set; }
+    public string Timestamp { get; set; } = "";
+    public string Action { get; set; } = "";
+    public string Details { get; set; } = "";
 }

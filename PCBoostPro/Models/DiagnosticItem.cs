@@ -1,11 +1,9 @@
 namespace PCBoostPro.Models;
 
-public class ProcessInfo
+public class DiagnosticItem
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = "Não disponível";
-    public long MemoryMb { get; set; }
-    public string MemoryMbText => MemoryMb > 0 ? $"{MemoryMb} MB" : "Não disponível";
-    public double CpuPercent { get; set; }
-    public string CpuText => $"{CpuPercent:0.0}%";
+    public string Title { get; set; } = "Sem título";
+    public string Status { get; set; } = "Sem informação";
+    public string Message { get; set; } = "Não disponível";
+    public string StatusColor { get; set; } = "#FBBF24";
 }
